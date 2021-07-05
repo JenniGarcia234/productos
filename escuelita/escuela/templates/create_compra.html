@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Añadir compra</title>
+{% endblock title %}
+
+{% block content %}
+
+  <script src ="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <div class="container">
+      <form method="POST" class="post-form">
+        {% csrf_token %}
+    <div class="container">
+    <br>
+
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <h3>Añadir compra</h3>
+    <h5>Ingrese una compra</h5>
+    </div>
+  </div>
+
+
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Product:</label>
+
+    <div class="col-sm-4">
+      <select   id="select_product">
+     <option selected disabled= "true">---Select Product---</option>
+		{% for products in product_data %}
+			<option value="{{ products.id }}"> {{ products.product_name }} </option>	
+		{% endfor %}
+		</select>
+    </div>
+
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Product price:</label>
+   <select   id="select_product">
+     <option selected disabled= "true">---Select Price---</option>
+		{% for products in product_data %}
+			<option value="{{ products.id }}"> {{ products.product_name }} </option>	
+		{% endfor %}
+		</select>
+  </div>
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-4">
+    <button type="submit" class="btn btn-info">Create</button>
+    <a href="/employees" class="btn btn-info">Cancel</a>
+
+    </div>
+    </div>
+
+    </div>
+
+</form>
+    </div>
+{% block scripting %}
+<script>
+        $('#select_product').on('change', function() {
+            product_price = $(this).val();
+            console.log(product_price);
+            $.ajax({
+                type:'GET',
+                url:'/sale/price/'+product_price+"/",
+                success: function(data){
+                    console.log('price will be updated based on product selected');
+                    $('#product_price').val(data.price);
+                }
+            })
+        });
+    </script>
+{% endblock %}
+{% endblock content %}

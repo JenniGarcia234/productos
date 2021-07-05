@@ -1,0 +1,104 @@
+
+{% extends 'base.html' %}
+{% block title %}
+    <title>Update Product</title>
+{% endblock title %}
+
+{% block content %}
+
+
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <div class="container">
+      <form method="POST" class="post-form" >
+        {% csrf_token %}
+      {% if form.errors %}
+	<!-- Error messaging -->
+	<div id="errors">
+		<div class="inner">
+			<p>There were some errors in the information you entered. Please correct the following:</p>
+			<ul>
+				{% for field in form %}
+					{% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<!-- /Error messaging -->
+{% endif %}
+
+    <div class="container">
+
+
+<br>
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <h3>Update Details</h3>
+    </div>
+  </div>
+
+
+  <div class="form-group row align-items-center">
+    <label for="id_product_name" class="col-sm-2 col-form-label">Product Name:</label>
+    <div class="col-sm-4">
+     <input type="text"  name="product_name" id="id_product_name"  required maxlength="25" value="{{ product.product_name }}" />
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="id_product_price" class="col-sm-2 col-form-label">Product Price:</label>
+    <div class="col-sm-4">
+     <input type="number"  name="product_price" id="id_product_price"  required maxlength="25" value="{{ product.product_price }}" />
+    </div>
+  </div>
+
+  <div class="form-group row align-items-center">
+    <label for="id_product_image" class="col-sm-2 col-form-label">Product Image:</label>
+    <div class="col-sm-4">
+    <input type="image"  name="product_image" id="id_product_image" value="{{ product.product_image}}" />
+      
+    </div>
+  </div>
+
+<div class="form-group row align-items-center">
+    <label for="id_size" class="col-sm-2 col-form-label">Product Size:</label>
+    <div class="col-sm-4">
+     <input type="number"  name="size" id="id_size"  required maxlength="25" value="{{ product.size }}" />
+    </div>
+  </div>
+
+
+   <div class="form-group row align-items-center">
+    <label for="id_width" class="col-sm-2 col-form-label">Product Width:</label>
+    <div class="col-sm-4">
+     <input type="number"  name="width" id="id_width"  required maxlength="25" value="{{ product.width}}" />
+    </div>
+  </div>
+
+   <div class="form-group row align-items-center">
+    <label for="id_details" class="col-sm-2 col-form-label">Product Details:</label>
+    <div class="col-sm-4">
+     <input type="text"  name="details" id="id_details"  required maxlength="25" value="{{ product.details}}" />
+    </div>
+  </div>
+
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-4">
+    <button type="submit" class="btn btn-info">Update</button>
+    <a href="/employees" class="btn btn-info">Cancel</a>
+
+    </div>
+    </div>
+
+    </div>
+
+</form>
+    </div>
+{% endblock content %}

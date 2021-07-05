@@ -1,0 +1,94 @@
+<{% extends 'base.html' %}
+{% block title %}
+    <title>Delete Product</title>
+{% endblock title %}
+
+{% block content %}
+
+<script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src ="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <div class="container">
+<form method="POST" class="post-form" >
+        {% csrf_token %}
+    <div class="text-danger">
+                <h3><strong>Are you sure you want to delete product id:{{ product.id }}?</strong> </h3>
+    </div>
+    <div class="container">
+<br>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-4">
+    <h3>Product Details</h3>
+    </div>
+  </div>
+
+ <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Product Id:</label>
+    <div class="col-sm-4">
+        <label>{{ product.id }}</label> 
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Product Name:</label>
+    <div class="col-sm-4">
+        <label>{{ product.product_name }} </label>
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Product price:</label>
+    <div class="col-sm-4">
+        <label>{{ product.product_price }} </label>
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Product image:</label>
+    <div class="col-sm-4">
+         <label>{{ product.product_image }} </label>
+    </div>
+    </div>
+
+<div class="form-group row">
+    <label class="col-sm-3 col-form-label">Product size:</label>
+    <div class="col-sm-4">
+         <label>{{ product.size }} </label>
+    </div>
+    </div>
+
+
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Product width:</label>
+    <div class="col-sm-4">
+         <label>{{ product.width}} </label>
+    </div>
+    </div>
+<div class="form-group row">
+    <label class="col-sm-3 col-form-label">Product details:</label>
+    <div class="col-sm-4">
+         <label>{{ product.details }} </label>
+    </div>
+    </div>
+
+
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" style="font-size:24px;color:white"></i>Delete</button>
+    <a href="/employees" class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>Cancel</a>
+    </div>
+  </div>
+
+    </div>
+
+</form>
+ </div>
+
+
+
+

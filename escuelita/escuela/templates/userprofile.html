@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Profile</title>
+{% endblock title %}
+
+{% block content %}
+<!--<script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+        <form method="POST" class="post-form" enctype="multipart/form-data" >
+        {% csrf_token %}
+
+    <div class="container">
+           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img src ="{{ user.userprofileinfo.image.url }}"
+            class = "img-fluid rounded-circle" alt = "Responsive Image" width = "175" height = "175">
+
+
+          {% if user.is_authenticated  and user.is_superuser %}
+            <h1><strong>Welcome Admin  </strong> </h1>
+          {% else %}
+           <h1><strong>Welcome   {{user.first_name}}</strong> </h1>
+
+          
+          {% endif %} 
+        
+       <h2>&emsp;Update Profile Page</h2>
+<br>
+  <div class="form-group row">
+
+    <div class="col-sm-4">
+        <input type="hidden" name="username" id="id_username" required maxlength="15" value="{{user.username }}" />
+    </div>
+  </div>
+
+
+ <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Id:</label>
+    <div class="col-sm-4">
+        <label>{{ user.id }} </label>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label"> City:</label>
+    <div class="col-sm-4">
+        <input type="text" name="city" id="id_city" required maxlength="15" value="{{user.userprofileinfo.city }}" />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Contact No:</label>
+    <div class="col-sm-4">
+        <input type="text" name="contactno" id="id_contactno" required maxlength="15" value="{{ user.userprofileinfo.contactno }}" />
+    </div>
+  </div>
+
+
+
+   <div class="form-group">
+    <label for="id_dob">  Date of Birth:&emsp;&nbsp;&emsp;&nbsp;&emsp;</label>
+    <input type="text" name="dob" id="id_dob" required maxlength="25" value="{{ user.userprofileinfo.dob }}" aria-describedby="passwordHelpInline">
+     <span class="input-group-addon"><i class="fa fa-calendar fa-lg"></i></span>
+    <big id="textHelpInline" class="text-muted">
+        Date Must be YYYY-MM-DD Format.
+    </big>
+  </div>
+
+   <div class="col-md-6">
+                            <label>Gender</label>
+                  
+                            <select name="gender"  class="form-control">
+                                <option selected disabled= "true">---Select Gender---</option>
+                                <option>Masculino</option>
+                                <option>Femenino</option>
+                           
+
+                            </select>
+                        </div>
+
+
+                         <div class="col-md-6">
+                            <label>Grade</label>
+                  
+                            <select name="grade"  class="form-control">
+                                <option selected disabled= "true">---Select Grade---</option>
+                                <option>Primero</option>
+                                <option>Segundo</option>
+                                <option>Tercero</option>
+                                <option>Cuarto</option>
+                                <option>Quinto</option>
+                                <option>Sexto</option>
+
+                            </select>
+                        </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">{{user.first_name}}  Picture:</label>
+    <div class="col-sm-4">
+      {{ form.image}}
+    </div>
+   </div>
+
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-4">
+
+    <button type="submit" class="btn btn-info">Update</button>
+    <a href="/" class="btn btn-info">Cancel</a>
+
+    </div>
+    </div>
+
+    </div>
+
+</form>
+
+{% block scripting %}
+<script>
+  $( function() {
+    $( "#id_dob" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: '1950:2050',
+      dateFormat: 'yy-mm-dd',
+      defaultDate:"24-09-2019"
+    });
+  } );
+</script>
+ <script>
+     $(document).ready(function () {
+     $('.dropdown-toggle').dropdown();
+     });
+</script>
+{% endblock %}
+{% endblock content %}
+

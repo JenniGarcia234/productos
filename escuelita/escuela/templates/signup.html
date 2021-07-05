@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>SignUp</title>
+{% endblock title %}
+
+{% block content %}
+
+  <script src ="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+    <div class="container">
+      <form method="POST" class="post-form" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="container">
+    <br>
+
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <h3>Register</h3>
+    </div>
+    </div>
+    <!--    {{ form.errors }}
+{{ form.non_field_errors }}-->
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">UserName:</label>
+    <div class="col-sm-4">
+      {{ form.username }}
+    </div>
+  </div>
+
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">First Name:</label>
+    <div class="col-sm-4">
+      {{ form.first_name}}
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Last Name:</label>
+    <div class="col-sm-4">
+      {{ form.last_name }}
+    </div>
+    </div>
+
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Email:</label>
+    <div class="col-sm-4">
+      {{ form.email }}
+    </div>
+    </div>
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Password:</label>
+    <div class="col-sm-4">
+      {{ form.password}}
+    </div>
+    </div>
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">ConfirmPassword:</label>
+    <div class="col-sm-4">
+      {{ form.confirm_password}}
+    </div>
+    </div>
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">City:</label>
+    <div class="col-sm-4">
+      {{ form.city}}
+    </div>
+    </div>
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">ContactNo:</label>
+    <div class="col-sm-4">
+      {{ form.contactno}}
+    </div>
+    </div>
+
+
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Date of Birth:</label>
+    <div class="col-sm-4">
+      {{ form.dob }}
+        <i class="fa fa-calendar fa-lg"></i>
+    </div>
+    </div>
+  <div class="col-md-6">
+                            <label>Gender</label>
+                  
+                            <select name="gender"  class="form-control">
+                                <option value="Male">Male</option>
+
+                                {% if data.gender == "Female" %}
+                                <option value="Female" selected>Female</option>
+                                {% else %}
+                                <option value="Female">Female</option>
+                                {% endif %}
+
+                                {% if data.gender == "Others" %}
+                                <option value="Others" selected>Others</option>
+                                {% else %}
+                                <option value="Others">Others</option>
+                                {% endif %}
+                            </select>
+                        </div>
+
+
+                         <div class="col-md-6">
+                            <label>Grade</label>
+                  
+                            <select name="grade"  class="form-control">
+                                <option value="Primero">Primero</option>
+
+                                {% if data.grade == "Segundo" %}
+                                <option value="Segundo" selected>Segundo</option>
+                                {% else %}
+                                <option value="Segundo">Segundo</option>
+                                {% endif %}
+
+                                {% if data.grade == "Tercero" %}
+                                <option value="Tercero"selected>Tercero</option>
+                                {% else %}
+                                <option value="Tercero">Tercero</option>
+                                {% endif %}
+
+                                {% if data.grade == "Cuarto" %}
+                                <option value="Cuarto" selected>Cuarto</option>
+                                {% else %}
+                                <option value="Cuarto">Cuarto</option>
+                                {% endif %}
+
+                                 {% if data.grade == "Quinto" %}
+                                <option value="Quinto" selected>Quinto</option>
+                                {% else %}
+                                <option value="Quinto">Quinto</option>
+                                {% endif %}
+
+                                 {% if data.grade == "Sexto" %}
+                                <option value="Sexto" selected>Sexto</option>
+                                {% else %}
+                                <option value="Sexto">Sexto
+                                
+                                </option>
+                                {% endif %}
+
+                            </select>
+                        </div>
+   <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Profile Picture:</label>
+    <div class="col-sm-4">
+      {{ form.image}}
+    </div>
+   </div>
+
+
+
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-4">
+    <button type="submit" class="btn btn-info">SignUp</button>
+    <a href="/employees" class="btn btn-info">Cancel</a>
+    </div>
+    </div>
+
+    </div>
+
+</form>
+    </div>
+{% block scripting %}
+<script>
+  $( function() {
+    $( "#id_dob" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: '1950:2050',
+      dateFormat: 'yy-mm-dd',
+      defaultDate:"24-09-2019"
+    });
+  } );
+</script>
+ <script>
+     $(document).ready(function () {
+     $('.dropdown-toggle').dropdown();
+     });
+</script>
+{% endblock %}
+{% endblock content %}
